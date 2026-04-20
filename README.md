@@ -1,15 +1,16 @@
+```mermaid
 ---
-title: ScopeWeaver System Architecture
+title: System Architecture
 config:
   flowchart:
     curve: cardinal
 ---
 flowchart TB
-    accDescr: Three-layer architecture. Frontend sends requests to API. The 5-Phase Pipeline (Thinker, Retrieval, Reranker, Planner) generates a strict JSON plan. The Orchestrator handles deployment back to the frontend and execution in the sandbox.
+    accDescr: 5-Phase architecture. Frontend sends requests to the API layer which drives the agent pipeline (Thinker, Retrieval, Reranker, Planner, Orchestrator). The orchestrator mutates the sandbox storage and handles deployment updates. Thinker, Reranker and Planner call Ollama for on-device inference.
 
-    subgraph Frontend["Phase 5: Deploy (Frontend)"]
-        swift["SwiftUI macOS App<br/>(Spotlight UI + HITL confirm)"]
-        cyto["Graphenbaum Viz<br/>(Rot/Grün Marker)"]
+    subgraph Frontend["Frontend (Phase 5: Deploy)"]
+        swift["SwiftUI macOS App<br/>(chat + HITL confirm)"]
+        cyto["D3.js graph viz<br/>(bundled WKWebView)"]
         swift --- cyto
     end
 
@@ -18,37 +19,32 @@ flowchart TB
         stream["WS /stream"]
     end
 
-    subgraph Pipeline["Agent Pipeline (Zero-Hallucination)"]
-        thinker["1. Thinker<br/>(Abstrakter Plan)"]
-        retrieval["2. Retrieval<br/>(Vektor-Suche)"]
-        reranker["3. Reranker<br/>(Logik-Korrektur)"]
-        planner["4. Planner<br/>(JSON Parameter-Mapping)"]
+    subgraph Pipeline["Agent Pipeline"]
+        thinker["1. Thinker<br/>Abstract Plan"]
+        retrieval["2. Retrieval<br/>Vector Search"]
+        reranker["3. Reranker<br/>Logic Correction"]
+        planner["4. Planner<br/>JSON Mapping"]
+        orchestrator["Orchestrator<br/>(plan-execute loop)"]
         
-        thinker --> retrieval --> reranker --> planner
-    end
-
-    subgraph Orchestration["Execution"]
-        orchestrator["Orchestrator<br/>(Plan Runner)"]
+        thinker --> retrieval --> reranker --> planner --> orchestrator
     end
 
     subgraph Sandbox["Sandbox + Storage"]
         fsgraph@{ shape: cyl, label: "FileSystemGraph" }
-        indexes@{ shape: cyl, label: "Skill-Store (/skills/)" }
+        indexes@{ shape: cyl, label: "SkillIndex (/skills/) + ContentIndex" }
     end
 
-    ollama@{ shape: cloud, label: "Ollama (on-device, 100% lokal)" }
+    ollama@{ shape: cloud, label: "Ollama (on-device)" }
 
-    Frontend -->|"Natural Language Query"| API
-    API --> thinker
-    planner -->|"Sicheres JSON-Schema"| orchestrator
-    orchestrator -->|"Ausführung"| Sandbox
-    orchestrator -->|"Graph- & Status-Updates"| API
+    Frontend -->|"HTTP + WebSocket"| API
+    API --> Pipeline
+    orchestrator --> Sandbox
     
     retrieval -.->|"Skill-Matching"| indexes
     
-    thinker -.->|"Prompt: Plan Generierung"| ollama
-    reranker -.->|"Prompt: Werkzeug-Validierung"| ollama
-    planner -.->|"Prompt: Parameter ausfüllen"| ollama
+    thinker -.->|"ollama SDK"| ollama
+    reranker -.->|"ollama SDK"| ollama
+    planner -.->|"ollama SDK"| ollama
 
     classDef frontendLayer stroke:#6b5cd6,stroke-width:3px
     classDef apiLayer stroke:#2d9b4a,stroke-width:3px
@@ -59,5 +55,6 @@ flowchart TB
     class Frontend frontendLayer
     class API apiLayer
     class Pipeline pipelineLayer
-    class Sandbox,Orchestration sandboxLayer
+    class Sandbox sandboxLayer
     class ollama externalLayer
+```
