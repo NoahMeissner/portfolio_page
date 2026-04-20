@@ -1,73 +1,63 @@
-# Welcome to your Lovable project
+---
+title: ScopeWeaver System Architecture
+config:
+  flowchart:
+    curve: cardinal
+---
+flowchart TB
+    accDescr: Three-layer architecture. Frontend sends requests to API. The 5-Phase Pipeline (Thinker, Retrieval, Reranker, Planner) generates a strict JSON plan. The Orchestrator handles deployment back to the frontend and execution in the sandbox.
 
-## Project info
+    subgraph Frontend["Phase 5: Deploy (Frontend)"]
+        swift["SwiftUI macOS App<br/>(Spotlight UI + HITL confirm)"]
+        cyto["Graphenbaum Viz<br/>(Rot/Grün Marker)"]
+        swift --- cyto
+    end
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+    subgraph API["API Layer"]
+        run["POST /run"]
+        stream["WS /stream"]
+    end
 
-## How can I edit this code?
+    subgraph Pipeline["Agent Pipeline (Zero-Hallucination)"]
+        thinker["1. Thinker<br/>(Abstrakter Plan)"]
+        retrieval["2. Retrieval<br/>(Vektor-Suche)"]
+        reranker["3. Reranker<br/>(Logik-Korrektur)"]
+        planner["4. Planner<br/>(JSON Parameter-Mapping)"]
+        
+        thinker --> retrieval --> reranker --> planner
+    end
 
-There are several ways of editing your application.
+    subgraph Orchestration["Execution"]
+        orchestrator["Orchestrator<br/>(Plan Runner)"]
+    end
 
-**Use Lovable**
+    subgraph Sandbox["Sandbox + Storage"]
+        fsgraph@{ shape: cyl, label: "FileSystemGraph" }
+        indexes@{ shape: cyl, label: "Skill-Store (/skills/)" }
+    end
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+    ollama@{ shape: cloud, label: "Ollama (on-device, 100% lokal)" }
 
-Changes made via Lovable will be committed automatically to this repo.
+    Frontend -->|"Natural Language Query"| API
+    API --> thinker
+    planner -->|"Sicheres JSON-Schema"| orchestrator
+    orchestrator -->|"Ausführung"| Sandbox
+    orchestrator -->|"Graph- & Status-Updates"| API
+    
+    retrieval -.->|"Skill-Matching"| indexes
+    
+    thinker -.->|"Prompt: Plan Generierung"| ollama
+    reranker -.->|"Prompt: Werkzeug-Validierung"| ollama
+    planner -.->|"Prompt: Parameter ausfüllen"| ollama
 
-**Use your preferred IDE**
+    classDef frontendLayer stroke:#6b5cd6,stroke-width:3px
+    classDef apiLayer stroke:#2d9b4a,stroke-width:3px
+    classDef pipelineLayer stroke:#d48806,stroke-width:3px
+    classDef sandboxLayer stroke:#595959,stroke-width:3px
+    classDef externalLayer stroke:#1a1a1a,stroke-width:3px
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+    class Frontend frontendLayer
+    class API apiLayer
+    class Pipeline pipelineLayer
+    class Sandbox,Orchestration sandboxLayer
+    class ollama externalLayer
