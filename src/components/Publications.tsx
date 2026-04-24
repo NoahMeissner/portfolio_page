@@ -1,32 +1,19 @@
 import { FileText } from "lucide-react";
 import { motion } from "framer-motion";
+import fm from "front-matter";
+import publicationsRaw from "../content/publications.md?raw";
 
 interface Publication {
+  year: string;
   title: string;
   venue: string;
-  year: number;
+  authors: string;
+  details: string[];
   link?: string;
 }
 
-const publications: Publication[] = [
-  {
-    title: "Step Detection in Pedestrian Dead Reckoning Using Transformer Models",
-    venue: "Workshop on Indoor Navigation, IPIN 2025",
-    year: 2025,
-    link: "#",
-  },
-  {
-    title: "Explainability Methods for IMU-Based Activity Recognition",
-    venue: "HCAI Seminar, University of Regensburg",
-    year: 2024,
-    link: "#",
-  },
-  {
-    title: "Building Student AI Communities: Lessons from URAI",
-    venue: "Talk at AI Bavaria Meetup",
-    year: 2024,
-  },
-];
+const { attributes } = fm<{ publications: Publication[] }>(publicationsRaw);
+const { publications } = attributes;
 
 const Publications = () => (
   <section id="publications" className="py-28">
@@ -35,7 +22,7 @@ const Publications = () => (
         Publications & Talks
       </h2>
 
-      <div className="mt-10 space-y-6">
+      <div className="mt-12 space-y-8">
         {publications.map((pub, i) => (
           <motion.div
             key={pub.title}
@@ -43,23 +30,39 @@ const Publications = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.35, delay: i * 0.08 }}
-            className="flex items-start justify-between gap-4"
+            className="group relative p-6 md:p-8 rounded-2xl bg-secondary/30 border border-border/50 hover:bg-secondary/50 hover:border-primary/30 transition-all duration-300"
           >
-            <div>
-              <h3 className="text-sm font-medium text-foreground leading-snug">{pub.title}</h3>
-              <p className="mt-1 text-xs text-muted-foreground">
-                {pub.venue} · {pub.year}
-              </p>
+            <div className="flex items-start gap-4">
+              <div className="mt-1 p-2 rounded-lg bg-primary/10 text-primary shrink-0">
+                <FileText className="w-5 h-5" />
+              </div>
+              <div className="space-y-3 w-full">
+                <div className="flex flex-wrap flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+                  <span className="text-sm font-bold text-primary bg-primary/10 px-2 py-0.5 rounded w-fit">
+                    {pub.year}
+                  </span>
+                  <span className="text-base md:text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {pub.link ? (
+                      <a href={pub.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                        {pub.title}
+                      </a>
+                    ) : (
+                      pub.title
+                    )}
+                  </span>
+                </div>
+                <div className="text-sm text-muted-foreground font-medium">
+                  <span className="text-foreground/80">{pub.authors}</span> — {pub.venue}
+                </div>
+                <ul className="space-y-1.5 list-disc list-inside text-sm text-muted-foreground pt-2">
+                  {pub.details.map((detail, idx) => (
+                    <li key={idx} className="leading-relaxed">
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            {pub.link && (
-              <a
-                href={pub.link}
-                className="shrink-0 mt-0.5 text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="View publication"
-              >
-                <FileText size={16} />
-              </a>
-            )}
           </motion.div>
         ))}
       </div>

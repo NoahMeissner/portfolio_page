@@ -1,11 +1,22 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
+import fm from "front-matter";
+import contactRaw from "../content/contact.md?raw";
 
-const socials = [
-  { icon: Mail, href: "mailto:noah@example.com", label: "Email" },
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-];
+interface Social {
+  icon: string;
+  href: string;
+  label: string;
+}
+
+const { attributes } = fm<{ socials: Social[] }>(contactRaw);
+const { socials = [] } = attributes;
+
+const iconMap: Record<string, React.ElementType> = {
+  Mail,
+  Github,
+  Linkedin,
+};
 
 const Contact = () => (
   <section id="contact" className="py-28 bg-secondary/40">
@@ -20,18 +31,22 @@ const Contact = () => (
           Get in Touch
         </h2>
         <div className="mt-8 flex justify-center gap-6">
-          {socials.map(({ icon: Icon, href, label }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="p-3 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors duration-200"
-            >
-              <Icon size={20} />
-            </a>
-          ))}
+          {socials.map(({ icon, href, label }) => {
+            const Icon = iconMap[icon];
+            if (!Icon) return null;
+            return (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="p-3 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors duration-200"
+              >
+                <Icon size={20} />
+              </a>
+            );
+          })}
         </div>
       </motion.div>
     </div>
