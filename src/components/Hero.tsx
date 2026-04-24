@@ -52,7 +52,7 @@ const Hero = () => {
             title="Click 3 times for a surprise"
           >
             <img
-              src="/profile.png"
+              src="/portfolio_page/profile.png"
               alt="Noah Profile"
               className="w-full h-full object-cover"
             />
