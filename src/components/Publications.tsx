@@ -1,4 +1,4 @@
-import { FileText } from "lucide-react";
+import { FileText, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import fm from "front-matter";
 import publicationsRaw from "../content/publications.md?raw";
@@ -10,6 +10,7 @@ interface Publication {
   authors: string;
   details: string[];
   link?: string;
+  github?: string;
 }
 
 const { attributes } = fm<{ publications: Publication[] }>(publicationsRaw);
@@ -61,6 +62,16 @@ const Publications = () => (
                     </li>
                   ))}
                 </ul>
+                {pub.github && (
+                  <a
+                    href={pub.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 mt-2 text-xs text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Github size={13} /> Code
+                  </a>
+                )}
               </div>
             </div>
           </motion.div>

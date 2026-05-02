@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BarChart3, ChevronDown, Activity, Search, Bot, CheckCircle2, XCircle, ArrowRight, CornerDownRight, X, FileText } from "lucide-react";
+import { BarChart3, ChevronDown, Activity, Search, Bot, CheckCircle2, XCircle, ArrowRight, CornerDownRight, X, FileText, User, Filter, RefreshCw, Utensils } from "lucide-react";
 
 // Import the aggregated JSON data
 import biasData from "../data/biasData.json";
@@ -24,6 +24,197 @@ const biasTextColors: Record<string, string> = {
     search_biase: "text-blue-500",
     both_biase: "text-amber-500",
     system_biase: "text-rose-500"
+};
+
+// ── Interactive Workflow Diagram ─────────────────────────────────────────────
+const WORKFLOW_NODES = [
+    {
+        id: "user",
+        label: "User Query",
+        sublabel: "Natural language request",
+        icon: User,
+        color: "bg-slate-500/20 border-slate-400 text-slate-400",
+        dot: "bg-slate-400",
+        desc: "The user submits a natural-language dietary request, e.g. 'I need a strict keto dinner under 30 min'.",
+    },
+    {
+        id: "prefilter",
+        label: "Knowledge Pre-Filter",
+        sublabel: "Keto compliance gate",
+        icon: Filter,
+        color: "bg-amber-500/20 border-amber-400 text-amber-400",
+        dot: "bg-amber-400",
+        desc: "A rule-based filter narrows the recipe pool to items that satisfy hard nutritional constraints (macro ratios, ingredients) before any LLM call.",
+    },
+    {
+        id: "manager",
+        label: "Manager & Item Analyst",
+        sublabel: "Candidate ranking",
+        icon: Search,
+        color: "bg-blue-500/20 border-blue-400 text-blue-400",
+        dot: "bg-blue-400",
+        desc: "The Manager Agent plans the recommendation strategy. The Item Analyst scores and ranks candidate recipes against user preferences and the active bias configuration.",
+    },
+    {
+        id: "reflector",
+        label: "Reflector Agent",
+        sublabel: "Iterative validation loop",
+        icon: RefreshCw,
+        color: "bg-violet-500/20 border-violet-400 text-violet-400",
+        dot: "bg-violet-400",
+        desc: "The Reflector evaluates the proposed plan against nutritional and preference criteria. On REJECT it sends feedback back to the Manager — the loop runs until ACCEPT or max iterations.",
+    },
+    {
+        id: "output",
+        label: "Final Recommendation",
+        sublabel: "Accepted meal plan",
+        icon: Utensils,
+        color: "bg-emerald-500/20 border-emerald-400 text-emerald-400",
+        dot: "bg-emerald-400",
+        desc: "The accepted recipe recommendation is returned to the user with explanations grounded in the active bias configuration.",
+    },
+];
+
+const WorkflowDiagram = () => {
+    const [active, setActive] = useState<string | null>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const managerRef = useRef<HTMLButtonElement>(null);
+    const reflectorRef = useRef<HTMLButtonElement>(null);
+    const [loopY, setLoopY] = useState<{ top: number; bottom: number; rightX: number } | null>(null);
+    const activeNode = WORKFLOW_NODES.find((n) => n.id === active);
+
+    useEffect(() => {
+        const measure = () => {
+            if (!containerRef.current || !managerRef.current || !reflectorRef.current) return;
+            const cRect = containerRef.current.getBoundingClientRect();
+            const mRect = managerRef.current.getBoundingClientRect();
+            const rRect = reflectorRef.current.getBoundingClientRect();
+            setLoopY({
+                top: mRect.top + mRect.height / 2 - cRect.top,
+                bottom: rRect.top + rRect.height / 2 - cRect.top,
+                rightX: mRect.right - cRect.left,
+            });
+        };
+        measure();
+        const ro = new ResizeObserver(measure);
+        if (containerRef.current) ro.observe(containerRef.current);
+        return () => ro.disconnect();
+    }, []);
+
+    // SVG loop path: starts at right of reflector, curves out, goes up, arrives at right of manager
+    const CURVE = 28; // how far right the loop bulges
+    const loopPath = loopY
+        ? `M ${loopY.rightX} ${loopY.bottom}
+       L ${loopY.rightX + CURVE} ${loopY.bottom}
+       Q ${loopY.rightX + CURVE + 10} ${loopY.bottom} ${loopY.rightX + CURVE + 10} ${loopY.bottom - 10}
+       L ${loopY.rightX + CURVE + 10} ${loopY.top + 10}
+       Q ${loopY.rightX + CURVE + 10} ${loopY.top} ${loopY.rightX + CURVE} ${loopY.top}
+       L ${loopY.rightX} ${loopY.top}`
+        : "";
+
+    return (
+        <div className="rounded-xl border border-border bg-muted/20 p-4 flex flex-col gap-3 select-none">
+            <p className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground text-center">
+                Multi-Agent Workflow — click a node
+            </p>
+
+            <div ref={containerRef} className="relative flex flex-col items-center gap-0">
+                {/* SVG overlay for the reject loop */}
+                {loopY && (
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+                        {/* REJECT label */}
+                        <text
+                            x={loopY.rightX + CURVE + 14}
+                            y={(loopY.top + loopY.bottom) / 2}
+                            textAnchor="start"
+                            dominantBaseline="middle"
+                            fill="#f43f5e"
+                            fontSize="9"
+                            fontWeight="bold"
+                            letterSpacing="1"
+                        >
+                            REJECT
+                        </text>
+                        {/* Dashed path */}
+                        <path
+                            d={loopPath}
+                            fill="none"
+                            stroke="#f43f5e"
+                            strokeWidth="1.5"
+                            strokeDasharray="4 3"
+                            strokeLinecap="round"
+                        />
+                        {/* Arrowhead pointing down into manager node */}
+                        <polygon
+                            points={`${loopY.rightX},${loopY.top - 1} ${loopY.rightX - 4},${loopY.top - 8} ${loopY.rightX + 4},${loopY.top - 8}`}
+                            fill="#f43f5e"
+                        />
+                        {/* Animated dot travelling the loop */}
+                        <motion.circle
+                            r="3"
+                            fill="#f43f5e"
+                            style={{ offsetPath: `path("${loopPath.replace(/\n\s+/g, " ")}")` } as any}
+                            animate={{ offsetDistance: ["0%", "100%"], opacity: [0, 1, 1, 0] }}
+                            transition={{ duration: 2.4, repeat: Infinity, ease: "linear" }}
+                        />
+                    </svg>
+                )}
+
+                {WORKFLOW_NODES.map((node, i) => {
+                    const Icon = node.icon;
+                    const isActive = active === node.id;
+                    const isManager = node.id === "manager";
+                    const isReflector = node.id === "reflector";
+
+                    return (
+                        <div key={node.id} className="relative flex flex-col items-center w-full">
+                            {/* Connector */}
+                            {i > 0 && (
+                                <div className="w-px bg-border relative flex items-center justify-center" style={{ height: 24 }}>
+                                    <div className="absolute w-0 h-0" style={{ borderLeft: "5px solid transparent", borderRight: "5px solid transparent", borderTop: "7px solid hsl(var(--border))", bottom: -1 }} />
+                                    <motion.div
+                                        className="absolute w-1.5 h-1.5 rounded-full bg-primary"
+                                        animate={{ y: ["-10px", "10px"], opacity: [0, 1, 0] }}
+                                        transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.3, ease: "linear" }}
+                                    />
+                                </div>
+                            )}
+
+                            {/* Node */}
+                            <motion.button
+                                ref={isManager ? managerRef : isReflector ? reflectorRef : undefined}
+                                onClick={() => setActive(active === node.id ? null : node.id)}
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.97 }}
+                                className={`w-full max-w-[260px] flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-200 cursor-pointer ${node.color} ${isActive ? "ring-2 ring-primary ring-offset-1 ring-offset-background shadow-lg" : "hover:brightness-110"}`}
+                            >
+                                <div className={`p-1.5 rounded-lg border ${node.color}`}>
+                                    <Icon size={14} />
+                                </div>
+                                <div className="text-left">
+                                    <div className="text-xs font-bold text-foreground">{node.label}</div>
+                                    <div className="text-[10px] text-muted-foreground">{node.sublabel}</div>
+                                </div>
+                            </motion.button>
+                        </div>
+                    );
+                })}
+            </div>
+
+            {/* Description — always reserves space to avoid layout shift */}
+            <div className="min-h-[72px] mt-1 px-4 py-3 rounded-xl bg-card border border-border text-xs text-muted-foreground leading-relaxed transition-opacity duration-150"
+                style={{ opacity: activeNode ? 1 : 0 }}>
+                {activeNode && (
+                    <>
+                        <span className={`font-bold mr-1 ${activeNode.color.split(" ").find(c => c.startsWith("text-"))}`}>
+                            {activeNode.label}:
+                        </span>
+                        {activeNode.desc}
+                    </>
+                )}
+            </div>
+        </div>
+    );
 };
 
 // Graph Node Component
@@ -157,41 +348,32 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
                                             </h2>
                                         </div>
                                         <div className="text-muted-foreground text-sm font-mono bg-muted/50 px-4 py-2 rounded-lg border border-border">
-                                            Year: 2024 | Domain: LLMs, LangGraph
+                                            Year: 2025 | Domain: LLMs, LangGraph
                                         </div>
                                     </div>
 
                                     {/* Research Abstract Section */}
                                     <div className="mb-12 bg-card border border-border rounded-3xl p-6 md:p-8 shadow-sm">
-                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                                             <div>
                                                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                                                     <FileText className="text-primary" size={20} /> Research Abstract
                                                 </h3>
-                                                <div className="text-muted-foreground text-sm leading-relaxed space-y-4">
+                                                <div className="text-muted-foreground text-sm leading-relaxed space-y-3">
                                                     <p>
-                                                        Integrating nutritional knowledge into recommender systems requires balancing user preferences with evidence-based health guidelines. Prioritising user satisfaction too highly can reinforce unhealthy habits, while prioritising health alone can lead to poor acceptance. This thesis explores how expert dietary knowledge can be systematically embedded into multi-agent systems (MAS) to generate personalised ketogenic recipe recommendations.
+                                                        How do you balance user preferences with health compliance in a recommender system? This thesis embeds expert ketogenic dietary knowledge into a <strong className="text-foreground">multi-agent system</strong> built on LangGraph — combining a rule-based pre-filter with iteratively self-correcting analyst and reflector agents.
                                                     </p>
                                                     <p>
-                                                        Based on the MacRec framework, a two-stage architecture was developed comprising a knowledge-based pre-filter to narrow down the options, followed by analyst and reflector agents that iteratively optimise the final selection. This modular design increases transparency and allows the trade-off between health goals and user preferences to be controlled explicitly.
+                                                        The system was evaluated under <strong className="text-foreground">four bias configurations</strong> — from No Bias to strict System Bias — revealing a core trade-off: stricter knowledge integration yields near-perfect keto compliance but reduces coverage and increases runtime.
                                                     </p>
                                                     <p>
-                                                        Experiments show that this approach substantially improves both keto compliance and the accuracy of recommendations. While strict configurations achieve near-perfect adherence, they reduce coverage and increase runtime, highlighting the inherent trade-off between validity, diversity and efficiency. An ablation study confirms the central role of the reflector agent in achieving high compliance, although this comes at an additional computational cost.
-                                                    </p>
-                                                    <p>
-                                                        From these findings, practical design guidelines are formed. Strong knowledge integration is suitable for safety-critical or compliance-focused applications. Adaptive, lighter models are preferable for everyday use. The results demonstrate that MAS-based architectures can provide robust, transparent and personalised dietary recommendations when expert knowledge is systematically incorporated.
+                                                        An ablation study confirms the <strong className="text-foreground">Reflector Agent</strong> as the key driver of compliance. The workflow on the right shows the full execution graph — click any node to learn more.
                                                     </p>
                                                 </div>
                                             </div>
 
-                                            {/* Workflow Image */}
-                                            <div className="bg-muted/30 p-4 rounded-xl border border-border flex flex-col items-center justify-center">
-                                                <img
-                                                    src="/workflow.png"
-                                                    alt="Figure 8: Overview: Multi Agent Workflow"
-                                                    className="w-full h-auto rounded-lg object-contain bg-white dark:bg-zinc-100"
-                                                />
-                                            </div>
+                                            {/* Workflow Diagram */}
+                                            <WorkflowDiagram />
                                         </div>
                                     </div>
 
@@ -201,7 +383,7 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
 
                                     {/* Global Stats Dashboard */}
                                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-                                        {biasData.biases.map((biasKey, index) => {
+                                        {biasData.biases.map((biasKey) => {
                                             const stats = biasData.stats[biasKey as keyof typeof biasData.stats];
                                             const successRate = Math.round((stats.accepted / stats.totalRequests) * 100);
                                             const avgIterations = (stats.totalIterations / stats.totalRequests).toFixed(1);

@@ -1,0 +1,699 @@
+{
+  "meta": {
+    "clusters": [
+      "Knowledge Graphs & AI",
+      "Ontology Engineering",
+      "Formal Ontology Concepts",
+      "Mereology & Cognition",
+      "Conceptual Modeling"
+    ],
+    "clusterColors": {
+      "Knowledge Graphs & AI": "#4E79A7",
+      "Ontology Engineering": "#F28E2B",
+      "Formal Ontology Concepts": "#E15759",
+      "Mereology & Cognition": "#76B7B2",
+      "Conceptual Modeling": "#59A14F"
+    },
+    "jowo_color": "#E05A2B",
+    "fois_color": "#20808D",
+    "jowo_years": [
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "fois_years": [
+      2016,
+      2018,
+      2020,
+      2021,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "topicTrends": [
+    {
+      "year": 2016,
+      "cluster": "Conceptual Modeling",
+      "venue": "FOIS",
+      "count": 3
+    },
+    {
+      "year": 2016,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "FOIS",
+      "count": 53
+    },
+    {
+      "year": 2016,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "FOIS",
+      "count": 14
+    },
+    {
+      "year": 2016,
+      "cluster": "Mereology & Cognition",
+      "venue": "FOIS",
+      "count": 35
+    },
+    {
+      "year": 2016,
+      "cluster": "Ontology Engineering",
+      "venue": "FOIS",
+      "count": 31
+    },
+    {
+      "year": 2017,
+      "cluster": "Conceptual Modeling",
+      "venue": "JOWO",
+      "count": 4
+    },
+    {
+      "year": 2017,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "JOWO",
+      "count": 91
+    },
+    {
+      "year": 2017,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "JOWO",
+      "count": 76
+    },
+    {
+      "year": 2017,
+      "cluster": "Mereology & Cognition",
+      "venue": "JOWO",
+      "count": 48
+    },
+    {
+      "year": 2017,
+      "cluster": "Ontology Engineering",
+      "venue": "JOWO",
+      "count": 56
+    },
+    {
+      "year": 2018,
+      "cluster": "Conceptual Modeling",
+      "venue": "FOIS",
+      "count": 2
+    },
+    {
+      "year": 2018,
+      "cluster": "Conceptual Modeling",
+      "venue": "JOWO",
+      "count": 1
+    },
+    {
+      "year": 2018,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "FOIS",
+      "count": 22
+    },
+    {
+      "year": 2018,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "JOWO",
+      "count": 29
+    },
+    {
+      "year": 2018,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "FOIS",
+      "count": 21
+    },
+    {
+      "year": 2018,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "JOWO",
+      "count": 5
+    },
+    {
+      "year": 2018,
+      "cluster": "Mereology & Cognition",
+      "venue": "FOIS",
+      "count": 24
+    },
+    {
+      "year": 2018,
+      "cluster": "Mereology & Cognition",
+      "venue": "JOWO",
+      "count": 14
+    },
+    {
+      "year": 2018,
+      "cluster": "Ontology Engineering",
+      "venue": "FOIS",
+      "count": 15
+    },
+    {
+      "year": 2018,
+      "cluster": "Ontology Engineering",
+      "venue": "JOWO",
+      "count": 20
+    },
+    {
+      "year": 2019,
+      "cluster": "Conceptual Modeling",
+      "venue": "JOWO",
+      "count": 9
+    },
+    {
+      "year": 2019,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "JOWO",
+      "count": 134
+    },
+    {
+      "year": 2019,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "JOWO",
+      "count": 91
+    },
+    {
+      "year": 2019,
+      "cluster": "Mereology & Cognition",
+      "venue": "JOWO",
+      "count": 61
+    },
+    {
+      "year": 2019,
+      "cluster": "Ontology Engineering",
+      "venue": "JOWO",
+      "count": 79
+    },
+    {
+      "year": 2020,
+      "cluster": "Conceptual Modeling",
+      "venue": "FOIS",
+      "count": 4
+    },
+    {
+      "year": 2020,
+      "cluster": "Conceptual Modeling",
+      "venue": "JOWO",
+      "count": 1
+    },
+    {
+      "year": 2020,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "FOIS",
+      "count": 42
+    },
+    {
+      "year": 2020,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "JOWO",
+      "count": 34
+    },
+    {
+      "year": 2020,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "FOIS",
+      "count": 10
+    },
+    {
+      "year": 2020,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "JOWO",
+      "count": 27
+    },
+    {
+      "year": 2020,
+      "cluster": "Mereology & Cognition",
+      "venue": "FOIS",
+      "count": 18
+    },
+    {
+      "year": 2020,
+      "cluster": "Mereology & Cognition",
+      "venue": "JOWO",
+      "count": 24
+    },
+    {
+      "year": 2020,
+      "cluster": "Ontology Engineering",
+      "venue": "FOIS",
+      "count": 13
+    },
+    {
+      "year": 2020,
+      "cluster": "Ontology Engineering",
+      "venue": "JOWO",
+      "count": 12
+    },
+    {
+      "year": 2021,
+      "cluster": "Conceptual Modeling",
+      "venue": "FOIS",
+      "count": 1
+    },
+    {
+      "year": 2021,
+      "cluster": "Conceptual Modeling",
+      "venue": "JOWO",
+      "count": 12
+    },
+    {
+      "year": 2021,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "FOIS",
+      "count": 23
+    },
+    {
+      "year": 2021,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "JOWO",
+      "count": 131
+    },
+    {
+      "year": 2021,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "FOIS",
+      "count": 4
+    },
+    {
+      "year": 2021,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "JOWO",
+      "count": 76
+    },
+    {
+      "year": 2021,
+      "cluster": "Mereology & Cognition",
+      "venue": "FOIS",
+      "count": 13
+    },
+    {
+      "year": 2021,
+      "cluster": "Mereology & Cognition",
+      "venue": "JOWO",
+      "count": 58
+    },
+    {
+      "year": 2021,
+      "cluster": "Ontology Engineering",
+      "venue": "FOIS",
+      "count": 14
+    },
+    {
+      "year": 2021,
+      "cluster": "Ontology Engineering",
+      "venue": "JOWO",
+      "count": 69
+    },
+    {
+      "year": 2022,
+      "cluster": "Conceptual Modeling",
+      "venue": "JOWO",
+      "count": 4
+    },
+    {
+      "year": 2022,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "JOWO",
+      "count": 45
+    },
+    {
+      "year": 2022,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "JOWO",
+      "count": 34
+    },
+    {
+      "year": 2022,
+      "cluster": "Mereology & Cognition",
+      "venue": "JOWO",
+      "count": 32
+    },
+    {
+      "year": 2022,
+      "cluster": "Ontology Engineering",
+      "venue": "JOWO",
+      "count": 15
+    },
+    {
+      "year": 2023,
+      "cluster": "Conceptual Modeling",
+      "venue": "JOWO",
+      "count": 6
+    },
+    {
+      "year": 2023,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "FOIS",
+      "count": 45
+    },
+    {
+      "year": 2023,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "JOWO",
+      "count": 70
+    },
+    {
+      "year": 2023,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "FOIS",
+      "count": 31
+    },
+    {
+      "year": 2023,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "JOWO",
+      "count": 79
+    },
+    {
+      "year": 2023,
+      "cluster": "Mereology & Cognition",
+      "venue": "FOIS",
+      "count": 20
+    },
+    {
+      "year": 2023,
+      "cluster": "Mereology & Cognition",
+      "venue": "JOWO",
+      "count": 47
+    },
+    {
+      "year": 2023,
+      "cluster": "Ontology Engineering",
+      "venue": "FOIS",
+      "count": 25
+    },
+    {
+      "year": 2023,
+      "cluster": "Ontology Engineering",
+      "venue": "JOWO",
+      "count": 45
+    },
+    {
+      "year": 2024,
+      "cluster": "Conceptual Modeling",
+      "venue": "FOIS",
+      "count": 1
+    },
+    {
+      "year": 2024,
+      "cluster": "Conceptual Modeling",
+      "venue": "JOWO",
+      "count": 17
+    },
+    {
+      "year": 2024,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "FOIS",
+      "count": 28
+    },
+    {
+      "year": 2024,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "JOWO",
+      "count": 97
+    },
+    {
+      "year": 2024,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "FOIS",
+      "count": 15
+    },
+    {
+      "year": 2024,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "JOWO",
+      "count": 154
+    },
+    {
+      "year": 2024,
+      "cluster": "Mereology & Cognition",
+      "venue": "FOIS",
+      "count": 17
+    },
+    {
+      "year": 2024,
+      "cluster": "Mereology & Cognition",
+      "venue": "JOWO",
+      "count": 46
+    },
+    {
+      "year": 2024,
+      "cluster": "Ontology Engineering",
+      "venue": "FOIS",
+      "count": 22
+    },
+    {
+      "year": 2024,
+      "cluster": "Ontology Engineering",
+      "venue": "JOWO",
+      "count": 82
+    },
+    {
+      "year": 2025,
+      "cluster": "Conceptual Modeling",
+      "venue": "FOIS",
+      "count": 5
+    },
+    {
+      "year": 2025,
+      "cluster": "Conceptual Modeling",
+      "venue": "JOWO",
+      "count": 5
+    },
+    {
+      "year": 2025,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "FOIS",
+      "count": 44
+    },
+    {
+      "year": 2025,
+      "cluster": "Formal Ontology Concepts",
+      "venue": "JOWO",
+      "count": 140
+    },
+    {
+      "year": 2025,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "FOIS",
+      "count": 12
+    },
+    {
+      "year": 2025,
+      "cluster": "Knowledge Graphs & AI",
+      "venue": "JOWO",
+      "count": 108
+    },
+    {
+      "year": 2025,
+      "cluster": "Mereology & Cognition",
+      "venue": "FOIS",
+      "count": 19
+    },
+    {
+      "year": 2025,
+      "cluster": "Mereology & Cognition",
+      "venue": "JOWO",
+      "count": 66
+    },
+    {
+      "year": 2025,
+      "cluster": "Ontology Engineering",
+      "venue": "FOIS",
+      "count": 24
+    },
+    {
+      "year": 2025,
+      "cluster": "Ontology Engineering",
+      "venue": "JOWO",
+      "count": 66
+    }
+  ],
+  "venueComparison": [
+    {
+      "cluster": "Knowledge Graphs & AI",
+      "FOIS": 15.613097599883021,
+      "JOWO": 25.97879092667051
+    },
+    {
+      "cluster": "Ontology Engineering",
+      "FOIS": 21.61320555606876,
+      "JOWO": 18.91847173595177
+    },
+    {
+      "cluster": "Formal Ontology Concepts",
+      "FOIS": 38.35540328918203,
+      "JOWO": 34.146441364050496
+    },
+    {
+      "cluster": "Mereology & Cognition",
+      "FOIS": 21.987546513965988,
+      "JOWO": 18.63445623432288
+    },
+    {
+      "cluster": "Conceptual Modeling",
+      "FOIS": 2.8358715477169008,
+      "JOWO": 2.321839739004348
+    }
+  ],
+  "paperCounts": [
+    {
+      "year": 2016,
+      "venue": "FOIS",
+      "count": 28
+    },
+    {
+      "year": 2017,
+      "venue": "JOWO",
+      "count": 64
+    },
+    {
+      "year": 2018,
+      "venue": "FOIS",
+      "count": 23
+    },
+    {
+      "year": 2018,
+      "venue": "JOWO",
+      "count": 15
+    },
+    {
+      "year": 2019,
+      "venue": "JOWO",
+      "count": 79
+    },
+    {
+      "year": 2020,
+      "venue": "FOIS",
+      "count": 17
+    },
+    {
+      "year": 2020,
+      "venue": "JOWO",
+      "count": 24
+    },
+    {
+      "year": 2021,
+      "venue": "FOIS",
+      "count": 11
+    },
+    {
+      "year": 2021,
+      "venue": "JOWO",
+      "count": 79
+    },
+    {
+      "year": 2022,
+      "venue": "JOWO",
+      "count": 29
+    },
+    {
+      "year": 2023,
+      "venue": "FOIS",
+      "count": 25
+    },
+    {
+      "year": 2023,
+      "venue": "JOWO",
+      "count": 53
+    },
+    {
+      "year": 2024,
+      "venue": "FOIS",
+      "count": 19
+    },
+    {
+      "year": 2024,
+      "venue": "JOWO",
+      "count": 79
+    },
+    {
+      "year": 2025,
+      "venue": "FOIS",
+      "count": 22
+    },
+    {
+      "year": 2025,
+      "venue": "JOWO",
+      "count": 70
+    }
+  ],
+  "jowoClusters": [
+    {
+      "year": 2017,
+      "Knowledge Graphs & AI": 27.636363636363637,
+      "Ontology Engineering": 20.363636363636363,
+      "Formal Ontology Concepts": 33.09090909090909,
+      "Mereology & Cognition": 17.454545454545457,
+      "Conceptual Modeling": 1.4545454545454546
+    },
+    {
+      "year": 2018,
+      "Knowledge Graphs & AI": 7.246376811594203,
+      "Ontology Engineering": 28.985507246376812,
+      "Formal Ontology Concepts": 42.028985507246375,
+      "Mereology & Cognition": 20.28985507246377,
+      "Conceptual Modeling": 1.4492753623188406
+    },
+    {
+      "year": 2019,
+      "Knowledge Graphs & AI": 24.331550802139038,
+      "Ontology Engineering": 21.12299465240642,
+      "Formal Ontology Concepts": 35.82887700534759,
+      "Mereology & Cognition": 16.31016042780749,
+      "Conceptual Modeling": 2.406417112299465
+    },
+    {
+      "year": 2020,
+      "Knowledge Graphs & AI": 27.55102040816326,
+      "Ontology Engineering": 12.244897959183673,
+      "Formal Ontology Concepts": 34.69387755102041,
+      "Mereology & Cognition": 24.489795918367346,
+      "Conceptual Modeling": 1.0204081632653061
+    },
+    {
+      "year": 2021,
+      "Knowledge Graphs & AI": 21.965317919075144,
+      "Ontology Engineering": 19.942196531791907,
+      "Formal Ontology Concepts": 37.861271676300575,
+      "Mereology & Cognition": 16.76300578034682,
+      "Conceptual Modeling": 3.4682080924855487
+    },
+    {
+      "year": 2022,
+      "Knowledge Graphs & AI": 26.153846153846157,
+      "Ontology Engineering": 11.538461538461538,
+      "Formal Ontology Concepts": 34.61538461538461,
+      "Mereology & Cognition": 24.615384615384617,
+      "Conceptual Modeling": 3.076923076923077
+    },
+    {
+      "year": 2023,
+      "Knowledge Graphs & AI": 31.983805668016196,
+      "Ontology Engineering": 18.218623481781375,
+      "Formal Ontology Concepts": 28.34008097165992,
+      "Mereology & Cognition": 19.02834008097166,
+      "Conceptual Modeling": 2.42914979757085
+    },
+    {
+      "year": 2024,
+      "Knowledge Graphs & AI": 38.88888888888889,
+      "Ontology Engineering": 20.707070707070706,
+      "Formal Ontology Concepts": 24.494949494949495,
+      "Mereology & Cognition": 11.616161616161616,
+      "Conceptual Modeling": 4.292929292929292
+    },
+    {
+      "year": 2025,
+      "Knowledge Graphs & AI": 28.05194805194805,
+      "Ontology Engineering": 17.142857142857142,
+      "Formal Ontology Concepts": 36.36363636363637,
+      "Mereology & Cognition": 17.142857142857142,
+      "Conceptual Modeling": 1.2987012987012987
+    }
+  ]
+}

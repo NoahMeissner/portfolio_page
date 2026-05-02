@@ -12,6 +12,7 @@ publications:
     venue: "15th Student Conference for CS, Potsdam."
     authors: "Meißner, N. & Manzenberger, S."
     link: "https://www.researchgate.net/publication/396099744_Beyond_Labels_A_Circumplex-Based_Framework_for_Emotion_on_X_formerly_Twitter"
+    github: "https://github.com/NoahMeissner/Emotion-Detection"
     details:
       - "Fine-tuned RoBERTa on 50k tweets; utilized GPT-3.5 for large-scale synthetic data annotation."
   - year: "2024"
@@ -19,6 +20,7 @@ publications:
     venue: "AVI 2024, Genoa, Italy."
     authors: "Meißner, N., Ludwig, B. et al."
     link: "https://dl.acm.org/doi/abs/10.1145/3656650.3656728"
+    github: "https://github.com/NoahMeissner/Indoor-Mapping-with-Holo-Lens-2"
     details:
       - "Developed a spatial reconstruction pipeline fusing local room scans into global maps using geometric alignment algorithms (<3cm error)."
 ---
