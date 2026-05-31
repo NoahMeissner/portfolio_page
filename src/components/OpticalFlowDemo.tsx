@@ -62,13 +62,14 @@ const TABLE_ROWS = [
   { fold: 3, route: "Ref (Back)", n: 36, acc: "1.000",f1Left: "1.0",  f1Straight: "—",    f1Right: "—",    bold: true  },
 ];
 
+const BASE = import.meta.env.BASE_URL;
 const IMAGES = [
   {
-    src: "/of-demo/record_setup.jpg",
+    src: `${BASE}of-demo/record_setup.jpg`,
     caption: "Fig. 1 — Recording system: Microsoft HoloLens 2 (head) + Google Pixel 9 (chest) + Raspberry Pi 5",
   },
   {
-    src: "/of-demo/trajectories.png",
+    src: `${BASE}of-demo/trajectories.png`,
     caption: "Recorded trajectories across three zone types: Confined Space, Open Space, Transition Zone",
   },
 ];

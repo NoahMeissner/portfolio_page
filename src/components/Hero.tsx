@@ -52,7 +52,7 @@ const Hero = () => {
             title="Click 3 times for a surprise"
           >
             <img
-              src="/portfolio_page/profile.png"
+              src={`${import.meta.env.BASE_URL}profile.png`}
               alt="Noah Profile"
               className="w-full h-full object-cover"
             />
