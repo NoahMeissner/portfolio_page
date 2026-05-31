@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import fm from "front-matter";
 import BiasDemo from "./BiasDemo";
 import LiteraturDemo from "./LiteraturDemo";
+import OpticalFlowDemo from "./OpticalFlowDemo";
 import projectsRaw from "../content/projects.md?raw";
 
 interface Project {
@@ -132,6 +133,7 @@ const Projects = () => {
 
       <BiasDemo isOpen={openDemo === "FoMaRec – Food Multi-Agent Recommender"} onClose={() => setOpenDemo(null)} />
       <LiteraturDemo isOpen={openDemo === "LiteraturResearcher"} onClose={() => setOpenDemo(null)} />
+      <OpticalFlowDemo isOpen={openDemo === "Seeing Around the Corner"} onClose={() => setOpenDemo(null)} />
     </section>
   );
 };
