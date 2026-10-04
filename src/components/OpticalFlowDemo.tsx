@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Navigation, TableIcon, ImageIcon, ArrowLeft, ArrowRight, ArrowUp } from "lucide-react";
+import { X, Navigation, TableIcon, ImageIcon, ArrowLeft, ArrowRight, ArrowUp, FileText } from "lucide-react";
 import {
   LineChart,
   Line,
@@ -115,23 +115,31 @@ const OpticalFlowDemo = ({ isOpen, onClose }: Props) => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-2 z-[101] flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl md:inset-10"
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed inset-2 z-[101] flex flex-col overflow-hidden rounded-lg border border-border bg-card shadow-2xl md:inset-10"
           >
             {/* Header */}
             <div className="flex items-start justify-between gap-4 border-b border-border/60 p-6">
               <div>
-                <span className="mb-2 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+                <span className="mb-2 inline-block rounded-md bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
                   GeoAI 2026 · Oral
                 </span>
-                <h2 className="text-2xl font-extrabold text-foreground">Seeing Around the Corner</h2>
+                <h2 className="font-serif text-2xl md:text-3xl font-semibold text-foreground">Seeing Around the Corner</h2>
                 <p className="mt-1 text-sm text-muted-foreground">
                   Lucas-Kanade optical flow · smartphone-only · no training data required
                 </p>
+                <a
+                  href="https://zenodo.org/records/20313731"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <FileText size={13} /> View Paper
+                </a>
               </div>
               <button
                 onClick={onClose}
-                className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="rounded-md p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 aria-label="Close"
               >
                 <X size={20} />
@@ -142,23 +150,22 @@ const OpticalFlowDemo = ({ isOpen, onClose }: Props) => {
             <div className="flex-1 space-y-6 overflow-y-auto p-6">
 
               {/* Stats row */}
-              <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 {[
-                  { label: "Overall Accuracy", value: "90%",  sub: "turn classification",  color: "text-green-500" },
-                  { label: "Trajectories",      value: "27",   sub: "10 participants",       color: "text-primary"   },
-                  { label: "Route Types",       value: "3",    sub: "LORTO-CV folds",        color: "text-amber-500" },
-                  { label: "IMU Baseline",      value: "45%",  sub: "improved to 90%",       color: "text-red-400"   },
+                  { label: "Accuracy — Complex Route", value: "0.93", sub: "Table 1, Fold 1 (N=56)" },
+                  { label: "Trajectories",              value: "27",   sub: "10 participants" },
+                  { label: "Route Types",               value: "3",    sub: "LORTO-CV folds" },
                 ].map((stat) => (
-                  <div key={stat.label} className="rounded-xl border border-border/60 bg-background p-4">
+                  <div key={stat.label} className="rounded-lg border border-border/60 bg-background p-4">
                     <p className="text-xs text-muted-foreground">{stat.label}</p>
-                    <p className={`mt-1 text-3xl font-extrabold ${stat.color}`}>{stat.value}</p>
+                    <p className="mt-1 text-2xl font-semibold text-foreground">{stat.value}</p>
                     <p className="mt-0.5 text-xs text-muted-foreground">{stat.sub}</p>
                   </div>
                 ))}
               </div>
 
               {/* Flow Signal */}
-              <div className="rounded-xl border border-border/60 bg-background p-5">
+              <div className="rounded-lg border border-border/60 bg-background p-5">
                 <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <h3 className="flex items-center gap-2 text-base font-bold text-foreground">
@@ -234,7 +241,7 @@ const OpticalFlowDemo = ({ isOpen, onClose }: Props) => {
               </div>
 
               {/* Paper Results Table */}
-              <div className="rounded-xl border border-border/60 bg-background p-5">
+              <div className="rounded-lg border border-border/60 bg-background p-5">
                 <h3 className="mb-1 flex items-center gap-2 text-base font-bold text-foreground">
                   <TableIcon size={16} className="text-primary" />
                   Table 1 — LORTO-CV Results
@@ -274,7 +281,7 @@ const OpticalFlowDemo = ({ isOpen, onClose }: Props) => {
               </div>
 
               {/* Images */}
-              <div className="rounded-xl border border-border/60 bg-background p-5">
+              <div className="rounded-lg border border-border/60 bg-background p-5">
                 <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-foreground">
                   <ImageIcon size={16} className="text-primary" />
                   Setup &amp; Trajectories

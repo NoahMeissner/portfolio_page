@@ -18,7 +18,7 @@ const Index = () => (
       <Contact />
     </main>
     <footer className="py-6 text-center text-xs text-muted-foreground">
-      © {new Date().getFullYear()} Noah. Built with care.
+      © {new Date().getFullYear()} Noah Meißner
     </footer>
   </>
 );

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Award, ExternalLink } from "lucide-react";
+import { Award, Users, ExternalLink } from "lucide-react";
 import fm from "front-matter";
 import uraiRaw from "../content/urai.md?raw";
 
@@ -20,10 +20,18 @@ interface AwardItem {
   issuer: string;
   period: string;
   description: string;
+  tag: string;
 }
 
-const { attributes } = fm<{ urai: URAIData; awards: AwardItem[] }>(uraiRaw);
-const { urai, awards = [] } = attributes;
+interface ExtracurricularItem {
+  role: string;
+  org: string;
+  period: string;
+  description: string;
+}
+
+const { attributes } = fm<{ urai: URAIData; awards: AwardItem[]; extracurricular: ExtracurricularItem[] }>(uraiRaw);
+const { urai, awards = [], extracurricular = [] } = attributes;
 
 const URAI = () => (
   <section id="urai" className="py-28 bg-urai">
@@ -35,23 +43,20 @@ const URAI = () => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="bg-card border border-border/50 rounded-3xl p-8 md:p-10 shadow-sm overflow-hidden relative"
+        className="bg-card border border-border/50 rounded-lg p-8 md:p-10 shadow-sm overflow-hidden relative"
       >
-        {/* Subtle gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none" />
-
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-xl bg-primary/10 border border-primary/20 shrink-0">
+            <div className="p-2 rounded-md bg-primary/10 border border-primary/20 shrink-0">
               <img src={urai.logoUrl} alt="URAI Logo" className="w-6 h-6 object-contain" />
             </div>
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="text-lg font-extrabold text-foreground">{urai.name}</h2>
+                <h2 className="text-lg font-bold text-foreground">{urai.name}</h2>
               </div>
               <p className="text-xs text-muted-foreground font-mono">{urai.period}</p>
             </div>
-            <span className="ml-auto px-2 py-0.5 text-xs font-bold rounded-full bg-primary/10 text-primary uppercase tracking-wide shrink-0">
+            <span className="ml-auto px-2 py-0.5 text-xs font-bold rounded-md bg-primary/10 text-primary uppercase tracking-wide shrink-0">
               Co-Founder & President
             </span>
           </div>
@@ -71,6 +76,28 @@ const URAI = () => (
         </div>
       </motion.div>
 
+      {/* ── Extracurricular ── */}
+      {extracurricular.map((item, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.35, delay: 0.1 }}
+          className="bg-card border border-border/50 rounded-lg p-6 md:p-7 shadow-sm flex gap-3 items-start"
+        >
+          <div className="p-2 rounded-md bg-primary/10 text-primary shrink-0">
+            <Users className="w-5 h-5" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg font-bold text-foreground">{item.role}</h3>
+            <p className="text-xs text-muted-foreground">{item.org}</p>
+            <p className="text-xs font-mono text-muted-foreground mt-2 mb-2">{item.period}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+          </div>
+        </motion.div>
+      ))}
+
       {/* ── Awards ── */}
       {awards.map((item, i) => (
         <motion.div
@@ -79,19 +106,19 @@ const URAI = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.35, delay: 0.1 }}
-          className="bg-card border border-border/50 rounded-3xl p-6 md:p-7 shadow-sm flex gap-3 items-start group"
+          className="bg-card border border-border/50 rounded-lg p-6 md:p-7 shadow-sm flex gap-3 items-start"
         >
-          <div className="p-2 rounded-xl bg-primary/10 text-primary shrink-0">
+          <div className="p-2 rounded-md bg-primary/10 text-primary shrink-0">
             <Award className="w-5 h-5" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-3 mb-1">
               <div>
-                <h3 className="text-lg font-extrabold text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
+                <h3 className="text-lg font-bold text-foreground">{item.title}</h3>
                 <p className="text-xs text-muted-foreground">{item.issuer}</p>
               </div>
-              <span className="ml-auto px-2 py-0.5 text-xs font-bold rounded-full bg-primary/10 text-primary uppercase tracking-wide shrink-0">
-                Scholarship
+              <span className="ml-auto px-2 py-0.5 text-xs font-bold rounded-md bg-primary/10 text-primary uppercase tracking-wide shrink-0">
+                {item.tag}
               </span>
             </div>
             <p className="text-xs font-mono text-muted-foreground mb-2">{item.period}</p>

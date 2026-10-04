@@ -1,12 +1,12 @@
 ---
 typeSequence:
-  - "Human-Centered AI"
+  - "Multi-Sensor Perception"
   - 1500
-  - "Indoor Navigation"
+  - "Indoor Pedestrian Navigation"
   - 1500
-  - "Explainable AI"
+  - "LLM Systems"
   - 1500
-  - "Human-Centered AI · Indoor Navigation · XAI"
+  - "Human-Centered AI · Multi-Sensor Perception · LLM Systems"
   - 5000
 ---
-Master's student in Human-Centered AI at the University of Regensburg. I research indoor navigation systems, IMU sensor data processing, and Explainable AI — making intelligent systems more transparent and useful for people.
+M.Sc. student in Human-Centered AI working at the intersection of multi-sensor perception and LLM systems. First-author research on indoor pedestrian navigation (GeoAI 2026, oral) and owner of the group's HoloLens 2 ground-truth rig. Currently on exchange at UTS Sydney, with an upcoming research visit at UNSW's CRUISE group.

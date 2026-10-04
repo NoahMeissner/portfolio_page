@@ -19,7 +19,7 @@ const { publications } = attributes;
 const Publications = () => (
   <section id="publications" className="py-28">
     <div className="container max-w-2xl">
-      <h2 className="text-2xl md:text-3xl font-light tracking-tight text-foreground">
+      <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
         Publications & Talks
       </h2>
 
@@ -31,7 +31,7 @@ const Publications = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.35, delay: i * 0.08 }}
-            className="group relative p-6 md:p-8 rounded-2xl bg-secondary/30 border border-border/50 hover:bg-secondary/50 hover:border-primary/30 transition-all duration-300"
+            className="group relative p-6 md:p-8 rounded-lg bg-secondary/30 border border-border/50 hover:bg-secondary/50 hover:border-primary/30 transition-colors duration-300"
           >
             <div className="flex items-start gap-4">
               <div className="mt-1 p-2 rounded-lg bg-primary/10 text-primary shrink-0">

@@ -113,7 +113,7 @@ const WorkflowDiagram = () => {
         : "";
 
     return (
-        <div className="rounded-xl border border-border bg-muted/20 p-4 flex flex-col gap-3 select-none">
+        <div className="rounded-lg border border-border bg-muted/20 p-4 flex flex-col gap-3 select-none">
             <p className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground text-center">
                 Multi-Agent Workflow — click a node
             </p>
@@ -184,9 +184,7 @@ const WorkflowDiagram = () => {
                             <motion.button
                                 ref={isManager ? managerRef : isReflector ? reflectorRef : undefined}
                                 onClick={() => setActive(active === node.id ? null : node.id)}
-                                whileHover={{ scale: 1.03 }}
-                                whileTap={{ scale: 0.97 }}
-                                className={`w-full max-w-[260px] flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-200 cursor-pointer ${node.color} ${isActive ? "ring-2 ring-primary ring-offset-1 ring-offset-background shadow-lg" : "hover:brightness-110"}`}
+                                className={`w-full max-w-[260px] flex items-center gap-3 px-4 py-3 rounded-lg border-2 transition-colors duration-200 cursor-pointer ${node.color} ${isActive ? "ring-2 ring-primary ring-offset-1 ring-offset-background shadow-sm" : "hover:brightness-110"}`}
                             >
                                 <div className={`p-1.5 rounded-lg border ${node.color}`}>
                                     <Icon size={14} />
@@ -202,7 +200,7 @@ const WorkflowDiagram = () => {
             </div>
 
             {/* Description — always reserves space to avoid layout shift */}
-            <div className="min-h-[72px] mt-1 px-4 py-3 rounded-xl bg-card border border-border text-xs text-muted-foreground leading-relaxed transition-opacity duration-150"
+            <div className="min-h-[72px] mt-1 px-4 py-3 rounded-lg bg-card border border-border text-xs text-muted-foreground leading-relaxed transition-opacity duration-150"
                 style={{ opacity: activeNode ? 1 : 0 }}>
                 {activeNode && (
                     <>
@@ -237,13 +235,13 @@ const AgentNode = ({
         <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`relative p-5 rounded-2xl border-2 transition-all ${isActive
+            className={`relative p-5 rounded-lg border-2 transition-all ${isActive
                 ? `border-primary shadow-lg bg-card z-10 scale-[1.02]`
                 : `border-border bg-muted/30 opacity-70`
                 }`}
         >
             <div className="flex items-center gap-3 mb-3">
-                <div className={`p-2.5 rounded-xl ${isActive
+                <div className={`p-2.5 rounded-lg ${isActive
                     ? `bg-primary/20 text-primary`
                     : `bg-muted text-muted-foreground`
                     }`}>
@@ -321,15 +319,15 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                         className="fixed inset-2 md:inset-10 z-[101] flex flex-col items-center justify-center pointer-events-none"
                     >
-                        <div className="w-full h-full max-w-6xl bg-card border border-border rounded-3xl shadow-2xl overflow-hidden flex flex-col pointer-events-auto relative">
+                        <div className="w-full h-full max-w-6xl bg-card border border-border rounded-lg shadow-2xl overflow-hidden flex flex-col pointer-events-auto relative">
 
                             {/* Close Button */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-6 right-6 p-2 rounded-full bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors z-20"
+                                className="absolute top-6 right-6 p-2 rounded-md bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors z-20"
                             >
                                 <X size={24} />
                             </button>
@@ -340,10 +338,10 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
                                 <div className="relative z-10 max-w-5xl mx-auto">
                                     <div className="mb-8 pr-12 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border/50 pb-8">
                                         <div>
-                                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4 tracking-wide uppercase">
-                                                <BarChart3 size={16} /> B.A. Thesis Interactive Showcase
+                                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/10 text-primary text-sm font-semibold mb-4 tracking-wide uppercase">
+                                                <BarChart3 size={16} /> Bachelor's Thesis
                                             </div>
-                                            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
+                                            <h2 className="font-serif text-2xl md:text-4xl font-semibold tracking-tight text-foreground">
                                                 Multi-Agent Bias Analysis
                                             </h2>
                                         </div>
@@ -353,7 +351,7 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
                                     </div>
 
                                     {/* Research Abstract Section */}
-                                    <div className="mb-12 bg-card border border-border rounded-3xl p-6 md:p-8 shadow-sm">
+                                    <div className="mb-12 bg-card border border-border rounded-lg p-6 md:p-8 shadow-sm">
                                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                                             <div>
                                                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
@@ -392,7 +390,7 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
                                                 <button
                                                     key={biasKey}
                                                     onClick={() => setActiveBias(biasKey)}
-                                                    className={`p-5 rounded-2xl border text-left flex flex-col transition-all duration-300 ${activeBias === biasKey
+                                                    className={`p-5 rounded-lg border text-left flex flex-col transition-all duration-300 ${activeBias === biasKey
                                                         ? `border-primary shadow-lg bg-card ring-1 ring-primary scale-[1.02]`
                                                         : `border-border bg-card/50 hover:bg-card hover:border-primary/50`
                                                         }`}
@@ -419,7 +417,7 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
                                     </div>
 
                                     {/* Interactive Graph Section */}
-                                    <div className="bg-background border border-border rounded-3xl p-6 md:p-8 shadow-sm">
+                                    <div className="bg-background border border-border rounded-lg p-6 md:p-8 shadow-sm">
                                         <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-10 pb-6 border-b border-border/50">
                                             <div>
                                                 <h3 className="text-2xl font-bold flex items-center gap-3">
@@ -435,7 +433,7 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
                                                 <div className="text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-2">Select User Request</div>
                                                 <button
                                                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                                    className="w-full flex items-center justify-between px-4 py-3 bg-card border border-border rounded-xl text-left hover:border-primary/50 transition-colors shadow-sm"
+                                                    className="w-full flex items-center justify-between px-4 py-3 bg-card border border-border rounded-lg text-left hover:border-primary/50 transition-colors shadow-sm"
                                                 >
                                                     <span className="truncate pr-4 text-sm font-medium">
                                                         {activeQuery ? `Query ${queriesList.indexOf(activeQuery) + 1}: ${activeQuery.query.substring(0, 40)}...` : "Select request"}
@@ -449,7 +447,7 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
                                                             initial={{ opacity: 0, y: -10 }}
                                                             animate={{ opacity: 1, y: 0 }}
                                                             exit={{ opacity: 0, y: -10 }}
-                                                            className="absolute right-0 top-full mt-2 w-[400px] max-h-[300px] overflow-y-auto bg-card border border-border rounded-xl shadow-2xl"
+                                                            className="absolute right-0 top-full mt-2 w-[400px] max-h-[300px] overflow-y-auto bg-card border border-border rounded-lg shadow-2xl"
                                                         >
                                                             {queriesList.map((q, idx) => (
                                                                 <button
@@ -470,7 +468,7 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
                                         {currentResult && (
                                             <div className="space-y-8">
                                                 {/* The Full User Query */}
-                                                <div className="px-6 py-4 rounded-xl bg-muted/50 border border-border inline-block max-w-[80%]">
+                                                <div className="px-6 py-4 rounded-lg bg-muted/50 border border-border inline-block max-w-[80%]">
                                                     <div className="flex items-start gap-4">
                                                         <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold shrink-0">U</div>
                                                         <div>
@@ -520,7 +518,7 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
                                                             <div className="flex gap-6 items-start relative">
                                                                 <ArrowRight size={20} className="absolute -left-10 top-6 text-emerald-500" />
                                                                 <div className="w-full max-w-3xl">
-                                                                    <div className={`p-5 rounded-2xl border-2 border-emerald-500/30 bg-emerald-500/5 shadow-sm`}>
+                                                                    <div className={`p-5 rounded-lg border-2 border-emerald-500/30 bg-emerald-500/5 shadow-sm`}>
                                                                         <div className="flex items-center gap-2 mb-3">
                                                                             <CheckCircle2 size={20} className="text-emerald-500" />
                                                                             <h4 className="font-bold text-emerald-600 dark:text-emerald-400">Final Validation: Accepted</h4>
@@ -537,7 +535,7 @@ const BiasDemo = ({ isOpen, onClose }: BiasDemoProps) => {
                                                             <div className="flex gap-6 items-start relative">
                                                                 <ArrowRight size={20} className="absolute -left-10 top-6 text-rose-500" />
                                                                 <div className="w-full max-w-3xl">
-                                                                    <div className={`p-5 rounded-2xl border-2 border-rose-500/30 bg-rose-500/5 shadow-sm`}>
+                                                                    <div className={`p-5 rounded-lg border-2 border-rose-500/30 bg-rose-500/5 shadow-sm`}>
                                                                         <div className="flex items-center gap-2 mb-2">
                                                                             <XCircle size={20} className="text-rose-500" />
                                                                             <h4 className="font-bold text-rose-600 dark:text-rose-400">Final Validation: Rejected</h4>

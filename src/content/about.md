@@ -1,55 +1,65 @@
 ---
 techStack:
-  - category: "AI & ML"
-    skills: ["PyTorch", "TensorFlow", "OpenCV", "SLAM", "Sensor Fusion", "LangChain", "LangGraph", "RAG Pipelines", "Amazon Bedrock", "Synthetic Data Generation", "Point Cloud Processing"]
-  - category: "Development"
-    skills: ["Python", "Java", "C", "TypeScript", "Next.js", "Assembly", "Git", "Docker"]
+  - category: "Spatial & Robotics"
+    skills: ["SLAM", "Sensor Fusion", "ROS2", "Path Planning", "Point Cloud Processing", "Optical Flow", "HoloLens 2"]
+  - category: "ML & CV"
+    skills: ["Deep Learning", "PyTorch", "TensorFlow", "OpenCV"]
+  - category: "ML Systems"
+    skills: ["Multi-sensor data pipelines", "Docker", "PostGIS", "Neo4j"]
+  - category: "LLM & Agents"
+    skills: ["LangChain", "LangGraph", "Multi-Agent Systems", "Agentic Planning", "RAG", "Amazon Bedrock"]
+  - category: "Engineering"
+    skills: ["Python", "Java", "C", "TypeScript", "Next.js"]
 languages:
   - "German (Native)"
   - "English (Fluent)"
-  - "Spanish (Beginner)"
-  - "Swedish (Beginner)"
 education:
-  - degree: "Upcoming:Study Abroad in Robotics"
+  - degree: "Study Abroad: Robotics & AI"
     school: "University of Technology Sydney, Australia"
     period: "07/2026 - 01/2027"
     details:
-      - "Coursework: Space Robotics, Image Pattern Processing, Advanced Databases"
-
-  - degree: "Master's in Human-Centered AI"
-    school: "University of Regensburg"
-    period: "10/2025 - Present"
+      - "Coursework: Space Robotics, Reinforcement Learning, Advanced Databases"
+  - degree: "M.Sc. Human-Centered AI"
+    school: "University of Regensburg, Germany"
+    period: "10/2025 - 03/2028"
     details:
-      - "Coursework: Optimization, Advanced Explainable AI, Generative AI"
-  - degree: "Computer Science (Study Abroad)"
+      - "Coursework: Optimization (LP/MILP), Advanced Explainable AI"
+  - degree: "Study Abroad: Computer Science"
     school: "Linnaeus University, Sweden"
     period: "09/2024 - 01/2025"
     details:
-      - "Coursework: Computer Technology, Operating Systems, Process Modelling"
-  - degree: "Bachelor's in Information Science"
-    school: "University of Regensburg"
+      - "Coursework: Operating Systems, Computer Technology, Process Modelling"
+  - degree: "Dual Major: B.A. Media Informatics & Information Science"
+    school: "University of Regensburg, Germany"
     period: "10/2021 - 09/2025"
     details:
-      - "GPA: 1.4 (Very Good)"
-      - "Coursework: Natural Language Processing, Information Retrieval, Computational Intelligence"
+      - "Grade: 1.4 (top 5% of cohort)"
+      - "Coursework: Computer Graphics, Natural Language Processing, Information Retrieval"
 work:
-  - role: "Data Science Intern"
-    company: "Porsche AG, Stuttgart"
-    period: "02/2025 - 04/2025"
+  - role: "Visiting Research Student (upcoming)"
+    company: "University of New South Wales — CRUISE Group, Australia"
+    period: "11/2026 - 01/2027"
     details:
-      - "GenAI Architecture: Engineered a Retrieval-Augmented Generation (RAG) pipeline using Amazon Bedrock for context-aware configuration."
-      - "Prototyping: Delivered a full-stack proof-of-concept (Next.js + LLM backend) within 12 weeks."
-  - role: "Student Research Assistant (URWalking)"
-    company: "University of Regensburg"
+      - "Hierarchical self-supervised embeddings (JEPA) for indoor pedestrian trajectories, examining whether learned abstraction levels correspond to human route structure."
+  - role: "Student Research Assistant"
+    company: "University of Regensburg — URWalking Project"
     period: "06/2023 - Present"
     details:
-      - "Conducting indoor navigation research for >5,000 users"
-      - "Engineered a HoloLens 2 system to record multi-sensor data and perform sensor fusion for indoor navigation."
-      - "Development of sensor-based tracking prototypes using smartphone sensors (GPS, accelerometer, gyroscope) for precise indoor and outdoor localization"
-      - "Teaching: Seminar 'Software Development for Indoor Navigation'."
+      - "Built and maintain the group's HoloLens 2 SLAM ground-truth rig (<8 cm loop closure over 180 m) — now the reference platform for indoor-tracking research at the chair, underpinning two master's theses."
+      - "Built a synchronized EEG + IMU + eye-tracking data pipeline for free-walking navigation studies, validated outside the lab under real ambulation; dataset collected with 10 participants × 2 km."
+      - "Teaching: co-run the seminar 'Software Development for Indoor Navigation' and the lab class for Computational Intelligence."
+  - role: "Editorial Assistant"
+    company: "Künstliche Intelligenz — German Journal of Artificial Intelligence (Springer)"
+    period: "01/2026 - Present"
+    details:
+      - "Built the journal's bibliometric pipeline for multi-conference publication analysis: automated metadata retrieval (40,000 papers), LLM-assisted PDF extraction, and keyword clustering."
+  - role: "Applied AI Research Intern"
+    company: "Porsche AG, Sonderwunsch Division"
+    period: "02/2025 - 04/2025"
+    details:
+      - "Built an LLM-based configurator prototype for the division on Amazon Bedrock."
+      - "Engineered the feasibility layer from scratch — a constraint model bounding generation by real manufacturing limits. Evaluated and handed over to the division; development ongoing."
 ---
-Currently pursuing my Master's in Human-Centered AI at the University of Regensburg, I work at the intersection of Sensor Fusion, Spatial AI, and Generative AI — from fusing IMU and EEG signals for indoor navigation to building agentic LLM pipelines that reason at scale. My work has been published at international venues, and I'm currently building navigation systems designed to scale to thousands of users.
-Along the way, I've taken these ideas into industry — including building a GenAI prototype at Porsche AG.
+I work at the intersection of sensor fusion, spatial AI, and large language model systems — from fusing IMU, EEG, and eye-tracking signals for indoor pedestrian navigation to building and empirically evaluating agentic LLM pipelines. My first-author work on indoor navigation was accepted for an oral presentation at GeoAI 2026, and I maintain the research group's HoloLens 2 ground-truth rig, now the reference platform for indoor-tracking research at the chair.
 
-When I'm not in the lab, I'm somewhere between the Scandinavian forests and the Australian coastline — or back home, felling trees in the woods.
-
+Alongside my research, I've taken these methods into industry, building an LLM-based configurator prototype for Porsche AG's Sonderwunsch division, and into academic publishing as an editorial assistant for the journal Künstliche Intelligenz (Springer).

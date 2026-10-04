@@ -29,14 +29,14 @@ const FeaturedCard = ({ project, index, onOpenDemo }: { project: Project; index:
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
-    className="group relative rounded-2xl bg-card p-6 border border-border/60 hover:border-primary/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col"
+    transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+    className="group relative rounded-lg bg-card p-6 border border-border/60 hover:border-primary/40 transition-colors duration-300 overflow-hidden flex flex-col"
   >
     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
     <div className="relative z-10 flex flex-col h-full">
       {project.badge && (
         <div className="flex items-center gap-2 mb-1">
-          <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-primary/10 text-primary uppercase tracking-wide">
+          <span className="px-2 py-0.5 text-xs font-bold rounded-md bg-primary/10 text-primary uppercase tracking-wide">
             {project.badge}
           </span>
         </div>
@@ -45,7 +45,7 @@ const FeaturedCard = ({ project, index, onOpenDemo }: { project: Project; index:
       <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{project.description}</p>
       <div className="mt-5 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
-          <span key={tag} className="px-3 py-1 text-xs font-semibold rounded-full bg-tag text-tag-foreground">
+          <span key={tag} className="px-3 py-1 text-xs font-semibold rounded-md bg-tag text-tag-foreground">
             {tag}
           </span>
         ))}
@@ -53,12 +53,12 @@ const FeaturedCard = ({ project, index, onOpenDemo }: { project: Project; index:
       <div className="mt-auto pt-6 flex items-center justify-between gap-4">
         <div className="flex gap-4">
           {project.github && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary hover:scale-110 transition-all cursor-pointer" aria-label="GitHub">
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer" aria-label="GitHub">
               <Github size={18} />
             </a>
           )}
           {project.paper && (
-            <a href={project.paper} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary hover:scale-110 transition-all cursor-pointer" aria-label="Paper">
+            <a href={project.paper} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer" aria-label="Paper">
               <FileText size={18} />
             </a>
           )}
@@ -82,7 +82,7 @@ const SoftwareCard = ({ project, index }: { project: Project; index: number }) =
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ duration: 0.35, delay: index * 0.08 }}
-    className="group rounded-xl bg-card p-4 border border-border/50 hover:border-primary/30 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
+    className="group rounded-md bg-card p-4 border border-border/50 hover:border-primary/30 transition-colors duration-200 flex flex-col"
   >
     <div className="flex items-start justify-between gap-2">
       <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors duration-200">{project.title}</h3>
@@ -95,7 +95,7 @@ const SoftwareCard = ({ project, index }: { project: Project; index: number }) =
     <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">{project.description}</p>
     <div className="mt-3 flex flex-wrap gap-1.5">
       {project.tags.map((tag) => (
-        <span key={tag} className="px-2 py-0.5 text-xs font-medium rounded-full bg-tag text-tag-foreground">
+        <span key={tag} className="px-2 py-0.5 text-xs font-medium rounded-md bg-tag text-tag-foreground">
           {tag}
         </span>
       ))}
@@ -109,7 +109,7 @@ const Projects = () => {
   return (
     <section id="projects" className="py-28 relative">
       <div className="container relative z-10">
-        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
+        <h2 className="font-serif text-3xl md:text-4xl font-semibold tracking-tight text-foreground">
           Research & Projects
         </h2>
 

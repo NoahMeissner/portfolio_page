@@ -42,7 +42,7 @@ const About = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-2xl md:text-3xl font-light tracking-tight text-foreground">About</h2>
+        <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-foreground">About</h2>
         <div className="mt-6 text-base text-muted-foreground leading-relaxed [&>p]:mb-4 last:[&>p]:mb-0">
           <ReactMarkdown>{body}</ReactMarkdown>
         </div>
@@ -58,7 +58,7 @@ const About = () => (
                   {cat.skills.map((t) => (
                     <span
                       key={t}
-                      className="px-3 py-1 text-xs font-medium rounded-full border border-border text-muted-foreground bg-background hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300 cursor-default shadow-sm hover:shadow"
+                      className="px-3 py-1 text-xs font-medium rounded-md border border-border text-muted-foreground bg-background hover:bg-accent hover:text-accent-foreground hover:border-primary/30 transition-colors duration-200 cursor-default"
                     >
                       {t}
                     </span>
@@ -75,7 +75,7 @@ const About = () => (
                 {languages.map((l) => (
                   <span
                     key={l}
-                    className="px-3 py-1 text-xs font-medium rounded-full border border-border text-muted-foreground bg-background hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300 cursor-default shadow-sm hover:shadow"
+                    className="px-3 py-1 text-xs font-medium rounded-md border border-border text-muted-foreground bg-background hover:bg-accent hover:text-accent-foreground hover:border-primary/30 transition-colors duration-200 cursor-default"
                   >
                     {l}
                   </span>
@@ -97,8 +97,8 @@ const About = () => (
             <div className="space-y-6">
               {education.map((item, i) => (
                 <div key={i} className="group relative pl-6 border-l-2 border-border/50 hover:border-primary/50 transition-colors duration-300">
-                  <div className="absolute w-3 h-3 bg-primary/20 rounded-full -left-[7px] top-1.5 flex items-center justify-center group-hover:bg-primary/40 group-hover:scale-125 transition-all duration-300">
-                    <div className="w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-110 transition-transform duration-300" />
+                  <div className="absolute w-3 h-3 bg-primary/20 rounded-full -left-[7px] top-1.5 flex items-center justify-center group-hover:bg-primary/40 transition-colors duration-300">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full" />
                   </div>
                   <h4 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors duration-300">{item.degree}</h4>
                   <p className="text-sm text-muted-foreground mt-1">{item.school}</p>
@@ -130,8 +130,8 @@ const About = () => (
             <div className="space-y-6">
               {work.map((item, i) => (
                 <div key={i} className="group relative pl-6 border-l-2 border-border/50 hover:border-primary/50 transition-colors duration-300">
-                  <div className="absolute w-3 h-3 bg-primary/20 rounded-full -left-[7px] top-1.5 flex items-center justify-center group-hover:bg-primary/40 group-hover:scale-125 transition-all duration-300">
-                    <div className="w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-110 transition-transform duration-300" />
+                  <div className="absolute w-3 h-3 bg-primary/20 rounded-full -left-[7px] top-1.5 flex items-center justify-center group-hover:bg-primary/40 transition-colors duration-300">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full" />
                   </div>
                   <h4 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors duration-300">{item.role}</h4>
                   <p className="text-sm text-muted-foreground mt-1">{item.company}</p>

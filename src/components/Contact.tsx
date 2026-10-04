@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
 import fm from "front-matter";
 import contactRaw from "../content/contact.md?raw";
@@ -16,6 +16,7 @@ const iconMap: Record<string, React.ElementType> = {
   Mail,
   Github,
   Linkedin,
+  GraduationCap,
 };
 
 const Contact = () => (
@@ -27,7 +28,7 @@ const Contact = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-2xl md:text-3xl font-light tracking-tight text-foreground">
+        <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
           Get in Touch
         </h2>
         <div className="mt-8 flex justify-center gap-6">
@@ -41,7 +42,7 @@ const Contact = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="p-3 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors duration-200"
+                className="p-3 rounded-md border border-border text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors duration-200"
               >
                 <Icon size={20} />
               </a>

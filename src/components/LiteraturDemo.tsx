@@ -74,7 +74,7 @@ const RADAR_DATA = VENUE_COMPARISON.map((r) => ({
 const SharedTooltip = ({ active, payload, label, unit = "%" }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-card border border-border rounded-xl shadow-xl p-4 text-sm min-w-[170px]">
+    <div className="bg-card border border-border rounded-lg shadow-xl p-4 text-sm min-w-[170px]">
       <div className="font-bold text-foreground mb-2">{label}</div>
       {[...payload].reverse().map((p: any) => (
         <div key={p.name} className="flex items-center justify-between gap-4 py-0.5">
@@ -98,7 +98,7 @@ const legendFormatter = (v: string) => (
 // ── Chart components ─────────────────────────────────────────────────────────
 
 const StackedBarChart = () => (
-  <div className="bg-background border border-border rounded-2xl p-5">
+  <div className="bg-background border border-border rounded-lg p-5">
     <p className="text-xs text-muted-foreground mb-4">Cluster share (%) — hover bars for details</p>
     <ResponsiveContainer width="100%" height={300}>
       <BarChart data={JOWO_YEARLY} margin={{ top: 4, right: 8, left: -14, bottom: 4 }}>
@@ -139,7 +139,7 @@ const HeatmapChart = () => {
     hovered?.year === year || hovered?.cluster === cluster;
 
   return (
-    <div className="bg-background border border-border rounded-2xl p-5 overflow-x-auto">
+    <div className="bg-background border border-border rounded-lg p-5 overflow-x-auto">
       <p className="text-xs text-muted-foreground mb-5">
         Colour intensity = relative prominence of cluster within its own range. Hover to highlight.
       </p>
@@ -201,7 +201,7 @@ const HeatmapChart = () => {
 };
 
 const TrendAreaChart = () => (
-  <div className="bg-background border border-border rounded-2xl p-5">
+  <div className="bg-background border border-border rounded-lg p-5">
     <p className="text-xs text-muted-foreground mb-4">Cluster share (%) over time — gradient area chart</p>
     <ResponsiveContainer width="100%" height={300}>
       <AreaChart data={JOWO_YEARLY} margin={{ top: 4, right: 8, left: -14, bottom: 4 }}>
@@ -233,7 +233,7 @@ const TrendAreaChart = () => (
 );
 
 const PaperVolumeChart = () => (
-  <div className="bg-background border border-border rounded-2xl p-5">
+  <div className="bg-background border border-border rounded-lg p-5">
     <p className="text-xs text-muted-foreground mb-4">Papers published per year by venue</p>
     <ResponsiveContainer width="100%" height={300}>
       <BarChart data={PAPER_COUNTS} margin={{ top: 4, right: 8, left: -14, bottom: 4 }}>
@@ -250,7 +250,7 @@ const PaperVolumeChart = () => (
 );
 
 const RadarComp = () => (
-  <div className="bg-background border border-border rounded-2xl p-5">
+  <div className="bg-background border border-border rounded-lg p-5">
     <p className="text-xs text-muted-foreground mb-4">Average cluster share (%) — JOWO vs FOIS across all editions</p>
     <ResponsiveContainer width="100%" height={320}>
       <RadarChart data={RADAR_DATA} margin={{ top: 10, right: 30, bottom: 10, left: 30 }}>
@@ -276,7 +276,7 @@ const RadarComp = () => (
 const GroupedBarChart = () => {
   const data = VENUE_COMPARISON.map((r) => ({ ...r, cluster: SHORT[r.cluster] }));
   return (
-    <div className="bg-background border border-border rounded-2xl p-5">
+    <div className="bg-background border border-border rounded-lg p-5">
       <p className="text-xs text-muted-foreground mb-4">Mean cluster share (%) per conference</p>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data} layout="vertical" margin={{ top: 4, right: 16, left: 10, bottom: 4 }}>
@@ -301,7 +301,7 @@ const DivergingChart = () => {
   })).sort((a, b) => b.diff - a.diff);
 
   return (
-    <div className="bg-background border border-border rounded-2xl p-5">
+    <div className="bg-background border border-border rounded-lg p-5">
       <p className="text-xs text-muted-foreground mb-1">JOWO minus FOIS share (pp) — positive = more prominent in JOWO</p>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data} layout="vertical" margin={{ top: 4, right: 30, left: 10, bottom: 4 }}>
@@ -313,7 +313,7 @@ const DivergingChart = () => {
               if (!active || !payload?.length) return null;
               const val = payload[0].value as number;
               return (
-                <div className="bg-card border border-border rounded-xl shadow-xl p-4 text-sm">
+                <div className="bg-card border border-border rounded-lg shadow-xl p-4 text-sm">
                   <div className="font-bold text-foreground mb-1">{label}</div>
                   <div className="text-muted-foreground">
                     JOWO {val >= 0 ? "leads by" : "trails by"}{" "}
@@ -373,7 +373,7 @@ const RQ1View = () => {
   ];
   return (
     <div className="space-y-5">
-      <div className="bg-muted/30 border border-border rounded-2xl p-5 text-sm text-muted-foreground leading-relaxed">
+      <div className="bg-muted/30 border border-border rounded-lg p-5 text-sm text-muted-foreground leading-relaxed">
         <strong className="text-foreground">Finding:</strong> "Knowledge Graphs &amp; AI" grew from 27.6% (2017) to a peak of{" "}
         <strong className="text-foreground">38.9%</strong> in 2024 — signalling a clear AI shift. "Formal Ontology Concepts" is the persistent backbone, while "Conceptual Modeling" stays below 5% throughout.
       </div>
@@ -402,7 +402,7 @@ const RQ2View = () => {
   ];
   return (
     <div className="space-y-5">
-      <div className="bg-muted/30 border border-border rounded-2xl p-5 text-sm text-muted-foreground leading-relaxed">
+      <div className="bg-muted/30 border border-border rounded-lg p-5 text-sm text-muted-foreground leading-relaxed">
         <strong className="text-foreground">Finding:</strong> JOWO has a stronger "KG &amp; AI" emphasis (<strong className="text-foreground">26%</strong> vs 15.6% at FOIS). FOIS leans more toward "Formal Ontology" and "Mereology" — consistent with its theoretically rigorous scope.
       </div>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -422,8 +422,8 @@ const RQ2View = () => {
 
 // ── Stat card ────────────────────────────────────────────────────────────────
 const StatCard = ({ value, label, color }: { value: string | number; label: string; color?: string }) => (
-  <div className="rounded-2xl bg-muted/40 border border-border p-5">
-    <div className="text-3xl font-extrabold" style={color ? { color } : { color: "hsl(var(--foreground))" }}>
+  <div className="rounded-lg bg-muted/40 border border-border p-5">
+    <div className="text-2xl font-semibold" style={color ? { color } : { color: "hsl(var(--foreground))" }}>
       {value}
     </div>
     <div className="text-xs text-muted-foreground uppercase tracking-widest font-semibold mt-1">{label}</div>
@@ -454,11 +454,11 @@ const LiteraturDemo = ({ isOpen, onClose }: Props) => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="fixed inset-2 md:inset-10 z-[101] flex flex-col items-center justify-center pointer-events-none"
           >
-            <div className="w-full h-full max-w-6xl bg-card border border-border rounded-3xl shadow-2xl overflow-hidden flex flex-col pointer-events-auto relative">
-              <button onClick={onClose} className="absolute top-6 right-6 p-2 rounded-full bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors z-20">
+            <div className="w-full h-full max-w-6xl bg-card border border-border rounded-lg shadow-2xl overflow-hidden flex flex-col pointer-events-auto relative">
+              <button onClick={onClose} className="absolute top-6 right-6 p-2 rounded-md bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors z-20">
                 <X size={24} />
               </button>
 
@@ -468,10 +468,10 @@ const LiteraturDemo = ({ isOpen, onClose }: Props) => {
 
                   {/* Header */}
                   <div className="mb-8 pr-12 border-b border-border/50 pb-8">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4 tracking-wide uppercase">
-                      <BookOpen size={16} /> GI AI Journal — Interactive Showcase
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/10 text-primary text-sm font-semibold mb-4 tracking-wide uppercase">
+                      <BookOpen size={16} /> Künstliche Intelligenz Journal
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
+                    <h2 className="font-serif text-2xl md:text-4xl font-semibold tracking-tight text-foreground">
                       LiteraturResearcher
                     </h2>
                     <p className="mt-3 text-muted-foreground max-w-2xl text-sm leading-relaxed">
@@ -488,7 +488,7 @@ const LiteraturDemo = ({ isOpen, onClose }: Props) => {
                   </div>
 
                   {/* Methodology */}
-                  <div className="mb-12 bg-card border border-border rounded-3xl p-6 md:p-8 shadow-sm">
+                  <div className="mb-12 bg-card border border-border rounded-lg p-6 md:p-8 shadow-sm">
                     <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                       <Activity className="text-primary" size={20} /> Methodology
                     </h3>
@@ -502,7 +502,7 @@ const LiteraturDemo = ({ isOpen, onClose }: Props) => {
                         </p>
                         <div className="flex flex-wrap gap-2 pt-1">
                           {CLUSTERS.map((c) => (
-                            <span key={c} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border border-border bg-muted/30">
+                            <span key={c} className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold border border-border bg-muted/30">
                               <span className="w-2 h-2 rounded-full shrink-0" style={{ background: CLUSTER_COLORS[c] }} />
                               {c}
                             </span>
@@ -510,7 +510,7 @@ const LiteraturDemo = ({ isOpen, onClose }: Props) => {
                         </div>
                       </div>
                       {/* Cluster table */}
-                      <div className="rounded-xl border border-border overflow-hidden text-xs">
+                      <div className="rounded-lg border border-border overflow-hidden text-xs">
                         <table className="w-full">
                           <thead>
                             <tr className="bg-muted/50 border-b border-border">
@@ -537,7 +537,7 @@ const LiteraturDemo = ({ isOpen, onClose }: Props) => {
                   </div>
 
                   {/* Research Questions */}
-                  <div className="bg-background border border-border rounded-3xl p-6 md:p-8 shadow-sm">
+                  <div className="bg-background border border-border rounded-lg p-6 md:p-8 shadow-sm">
                     <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8 pb-6 border-b border-border/50">
                       <div>
                         <h3 className="text-2xl font-bold flex items-center gap-3">
@@ -555,7 +555,7 @@ const LiteraturDemo = ({ isOpen, onClose }: Props) => {
                           <button
                             key={key}
                             onClick={() => setRq(key)}
-                            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+                            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                               rq === key
                                 ? "bg-primary text-primary-foreground shadow"
                                 : "bg-muted text-muted-foreground hover:bg-muted/80"
